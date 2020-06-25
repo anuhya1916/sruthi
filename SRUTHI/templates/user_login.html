@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LOGIN FORM</title>
+	<style>
+		body{
+			
+			background-size:cover;
+			background-position:center;
+		}
+.login
+ { 
+ 	background-color:afff;
+	height:110px;
+	width:190px;
+	margin:auto;
+	border:1px ;
+	padding:10px;
+}
+
+.login input 
+{ 
+	padding:5px;
+	margin:5px;
+ }
+	</style>
+</head>
+<body>
+	<form action="api_call" method="POST">
+		{%csrf_token%}
+	
+	<h1 text align="center">LOGIN HERE</h1>
+	<div class="login">
+  <input type="text" placeholder="Rollno" name="Rollno" id="Rollno"><br><br> 
+  <input type="password" placeholder="Password"  name="pasword" id="password"><br><br><br>
+
+	<input type="submit" value="Sign In"></a><br><br>
+	
+	{%if messages%}
+	{%for ms in messages%}
+	{{ms}}
+	{%endfor%}
+	{%endif%}
+</div>
+</form>
+</body>
+</html>
