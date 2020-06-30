@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LOGIN FORM</title>
+	<style>
+		body{
+			
+			background-size:cover;
+			background-position:center;
+		}
+.login
+ { 
+ 	background-color:afff;
+	height:110px;
+	width:190px;
+	margin:auto;
+	border:1px ;
+	padding:10px;
+}
+
+.login input 
+{ 
+	padding:5px;
+	margin:5px;
+ }
+	</style>
+</head>
+
+<body>
+	<form action="admin-login" method="POST">
+		{%csrf_token%}
+	
+	<h1 text align="center">ADMIN LOGIN </h1>
+	<div class="login">
+  <input type="text" placeholder="Admin Id" name="admin_id" id="admin_id"><br><br> 
+  <input type="password" placeholder="Password"  name="pwd" id="pwd"><br><br><br>
+
+	<input type="submit" value="Sign In"></a><br><br>
+	
+	{%if messages%}
+	{{messages}}
+	{%endif%}
+</div>
+</form>
+</body>
+</html>

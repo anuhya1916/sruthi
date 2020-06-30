@@ -1,90 +1,46 @@
-<HTML>
-<HEAD>
-	<title>Registration form creation</title>
-<style>
-	body{
-		background-image:url(img2.jpg);
-		background-size: cover;
-		background-position: center;
-	}
-
-*{
-	margin: 0;
-	padding: 0;
-}
-h1{
-	text-align: center;
-	padding: 20px;
-}
-.register{
-	 background: afff;
-	 width: 500px;
-	 margin: 0px 0px 0px 430px;
-	 color:violet;
-	 font-size: 18;
-     padding: 20px;
-     border-radius:10px;
-}
-#register{
-	margin-left: 50px;
-
-}
-label{
-	color:blue;
-	font-family:merlin;
-	font-size: 18px;
-}
-#name{
-	width:300px;
-	border:black;
-	border-radius:3px;
-	outline:0;
-	padding:7px;
+<!DOCTYPE html>
+<html>
+<head>
+	<title>REGISTRATION FORM</title>
+	<style>
+		body{
+			background-image:url(img1.jpg);
+			background-size:cover;
+			background-position:center;
+		}
+.login
+ { 
+ 	background-color:#042331;
+	height:110px;
+	width:190px;
+	margin:auto;
+	border:1px ;
+	padding:10px;
 }
 
-</style>
-</HEAD>
-   <BODY>
-   	<h1>Registration Form</h1>
-   	<div class="register">
-   		<h2>Register here for SHRUTHI </h2>
-		   <form method="post" action="registration">
+.login input 
+{ 
+	padding:5px;
+	margin:5px;
+ }
+	</style>
+</head>
+	<body>
+		<form method="post" action="registration">
 			{% csrf_token %}
 			{{ form }}
-   		
-   		<label>Name:</label><br>
-   		<input type="text" name="name" id="name"
-		placeholder="Enter Your Name"><br><br>
-		<label>Password:</label><br>
-   		<input type="password" name="pw" id="pw"
-		placeholder="Enter Your password"><br><br>
-		<label>College Name:</label><br>
-   		<input type="text" name="clname" id="clname"
-		placeholder="Enter Your College Name"><br><br>	
-   		<label>Roll No   :</label><br>
-   		<input type="number" name="rno" id="rno"
-   		 placeholder="Enter Your Rollno"><br><br>
-   		<label>Branch    : </label><br>
-   		<input type="text" name="branch" id="branch"
-		placeholder="Enter Your Branch"><br><br>
-		<label>Year   :</label><br>
-   		<input type="number" name="year" id="year"
-   		 placeholder="Year"><br><br>
-   		<label>Year:</label><br>
-   		<select id="ph">
-   			<option>+91</option>
-   			<option>+92</option>
-            <option>+93</option>
-            <option>+94</option>
-            <option>+95</option>
-   		</select>
-   		<input type="number" name="mobile no" id="mobile no"
-   		 placeholder="Enter Your Mobile number"><br><br>
-         <label>E Mail   :</label><br>
-         <input type="email" name="email" id="name"
-		placeholder="Enter Your Email id"><br><br>
-		<input type="submit">SUBMIT</button>
-    </div>
-
-   </BODY>
-</HTML>
+		<h1 text align="center">REGISTER  HERE</h1>
+			<div class="login">
+				<input type="text" name="name" id="name" placeholder="Enter Your Name"><br><br>
+				<input type="password" name="pw" id="pw" placeholder="Enter Your password"><br><br>
+				<input type="text" name="clname" id="clname" placeholder="Enter Your College Name"><br><br>	
+				<input type="text" name="rno" id="rno" placeholder="Enter Your Rollno"><br><br>
+				<input type="text" name="branch" id="branch" placeholder="Enter Your Branch"><br><br>
+				<input type="number" name="year" id="year" placeholder="Year"><br><br>
+				<input type="text" name="mobile no" id="mobile no" placeholder="Enter Your Mobile number"><br><br>
+				<input type="text" name="email" id="name" placeholder="Enter Your Email id"><br><br>
+				<input type="submit">	
+			</div>
+		</form>
+	</body>
+</html>

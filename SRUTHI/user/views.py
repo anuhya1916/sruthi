@@ -6,12 +6,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 import requests
 import json
+from django.http import HttpResponse
 
+
+
+p=''
 # Create your views here.
 def user_login(request):
-    message=User.objects.order_by('Rollno')
-    context={'message':message}
-    return render(request,'user_login.html',context)
+    return render(request,'user_login.html',None)
 def user_registration(request):
     return render(request,'user_registration.html',None)
 def registration(request):
@@ -29,20 +31,79 @@ def registration(request):
         r=requests.post('https://shruthiapi.herokuapp.com/user_register',data)
         k=request.POST.get('name')+"  is registered"
         messages.success(request,k)
-        return render(request,'user_login.html',None)
+        return redirect("http://127.0.0.1:8000/")
 def api_call(request):
     Rollno=request.POST.get('Rollno')
     password=request.POST.get('password')
     det={'Rollno':Rollno,'password':password}
     token = requests.post("https://shruthiapi.herokuapp.com/user_login",det)
-    global p
-    p = token.json()['access_token']
-    Rollno=request.POST.get('rno')
-    data = requests.get("http://shruthiapi.herokuapp.com/user_details",headers = {'Authorization':f'Bearer {p}'},msg={'Rollno':Rollno}) 
-    res = data.json()
-    context={'data': res} 
-    return render(request,'api.html',context)
+    if(token.status_code== 200):
+        global p
+        p = token.json()
+        headers = {"Authorization": "Bearer "  + p['access_token']}
+        det2={'Rollno':Rollno}
+        td = requests.get("http://shruthiapi.herokuapp.com/user_details",det2,headers=headers) 
+        res = td.json()
+        context={'user_list': res,} 
+        return render(request,'api.html',context)
+    else:
+        messages="credentials invalid"
+        context={'messages':messages}
+        return render(request,'user_login.html',context)
+def profile(request,Rollno):
+    det={'Rollno':Rollno}
+    token = requests.post("http://shruthiapi.herokuapp.com/roll_access",det)
+    if(token.status_code== 200):
+        global p
+        p = token.json()
+        headers = {"Authorization": "Bearer "  + p['access_token']}
+        td = requests.get("http://shruthiapi.herokuapp.com/user_details",det,headers=headers) 
+        res = td.json()
+        context={'user_list': res,} 
+        return render(request,'profile.html',context)
 
+    else:
+        messages="error"
+        context={'messages':messages}
+        return render(request,'user_login.html',context)
+def EventsReg(request,Rollno):
+    det={'Rollno':Rollno}
+    token = requests.post("http://shruthiapi.herokuapp.com/roll_access",det)
+    if(token.status_code== 200):
+        global p
+        p = token.json()
+        headers = {"Authorization": "Bearer "  + p['access_token']}
+        td = requests.get("https://shruthiapi.herokuapp.com/user_event",det,headers=headers) 
+        res = td.json()
+        context={'events_list': res,} 
+        return render(request,'EventsReg.html',context)
+    else:
+        messages="error"
+        context={'messages':messages}
+        return render(request,'user_login.html',context)
+def Events(request):
+    token = requests.get("https://shruthiapi.herokuapp.com/events")
+    res=token.json()
+    context={'Events_list':res,}
+    return render(request,'Events.html',context)
+def Eventregistration(request,user_id):
+    det={'user_id':user_id}
+    token = requests.get("https://shruthiapi.herokuapp.com/events")
+    res=token.json()
+    context={'users':det,'events':res}
+    return render(request,'reg.html',context)
+def reg(request,user_id):
+    event_id=request.POST.get('events')
+    det={'user_id':user_id,'event_id':event_id}
+    token=requests.post("https://shruthiapi.herokuapp.com/user_evtreg",det)
+    if(token.status_code==201):
+        return HttpResponse("User Successfully Registered to event")
+    elif(token.status_code==400):
+        return HttpResponse("You have already registered  for this event")
+    else:
+        return HttpResponse("There was an error while registration")
+
+    
 
 
     

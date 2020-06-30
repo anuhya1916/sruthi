@@ -1,0 +1,19 @@
+<h1>
+    You have Registerd For Following Events
+
+</h1>
+<table style="width:100%">
+    <tr>
+      <th>EVENT ID</th>
+      <th>EVENT TITLE</th>
+      
+    </tr>
+    {%if events_list%}
+    {%for event in events_list%}
+    <tr>
+      <td>{{event.event_id}}</td>
+      <td>{{event.event_title}}</td>
+    </tr>
+    {%endfor%}
+    {%endif%}
+  </table>

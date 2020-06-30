@@ -1,0 +1,77 @@
+<HTML>
+    <HEAD>
+        <title>WELCOME TP YOUR PROFILE {{user.name}} </title>
+    <style>
+        body{
+            background-image:url(img2.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+    
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    h1{
+        text-align: center;
+        padding: 20px;
+    }
+    .register{
+         background: afff;
+         width: 500px;
+         margin: 0px 0px 0px 430px;
+         color:violet;
+         font-size: 18;
+         padding: 20px;
+         border-radius:10px;
+    }
+    #register{
+        margin-left: 50px;
+    
+    }
+    label{
+        color:blue;
+        font-family:merlin;
+        font-size: 18px;
+    }
+    #name{
+        width:300px;
+        border:black;
+        border-radius:3px;
+        outline:0;
+        padding:7px;
+    }
+    
+    </style>
+    </HEAD>
+       <BODY>
+        {%if user_list%}
+        {%for user in user_list%}
+           <h1>Profile</h1>
+           <div class="register">
+               <h2> </h2>
+               <form method="post" action="registration">
+                {% csrf_token %}
+              
+               
+               <label>Name:</label><br>
+               {{user.name}}<br><br>
+            
+            <label>College Name:</label><br>
+               {{user.college}}<br><br>	
+               <label>Roll No   :</label><br>
+               {{user.Rollno}}<br><br>
+               <label>Branch    : </label><br>
+               {{user.branch}}<br><br>
+            <label>Year   :</label><br>
+            {{user.year}}<br><br>
+            <label>Phone No   :</label><br>
+             {{user.mobile_no}}<br><br>
+             <label>E Mail   :</label><br>
+             {{user.email_id}}
+        </div>
+    {%endfor%}
+    {%endif%}
+       </BODY>
+    </HTML>
+    

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adminpage</title>
+	<style>
+		body{
+			background:#042331;
+		}
+	.links li{
+ display:inline-block;
+}
+	.links li a{
+	text-decoration:none;
+	color: white;
+	padding:5px 20px;
+	font-family: Source Sans Pro;
+	font-weight:lighter;
+	font-size: 18px;
+	padding:0 28px;
+}
+.links li a :hover{
+	background:#fff;
+	color: black;
+}
+.sidebar{
+			position:auto;
+			left:0;
+			width:250px;
+			height:100%;
+			background:#042331;
+		}
+.sidebar header{
+			font-size:22px;
+			color:white;
+			text-align: center;
+			line-height:70px;
+			background:#063146;
+			user-select: none;
+		}
+.sidebar ul a{
+			display:block;
+			height:100%;
+			width:100%;
+			line-height: 65px;
+			font-size: 20px;
+			color:white;
+			padding-left: 40px;
+			box-sizing:border-box;
+			border-top:1px solid rgba(255,255,255,.1);
+			border-bottom: 1px solid black;
+		}
+ul li:hover a{
+			padding-left: 16px;
+		}
+.sidebar ul a i{
+			margin-right: 16px;
+		}
+.logo img{
+	width: 500px;
+	float: right;
+	height: auto;
+}
+.data{
+	font-size: 14px;
+	color: white;
+}
+
+.sidebar2{
+			position:auto;
+			left:300;
+			width:250px;
+			height:100%;
+			background:#042331;
+		}
+.sidebar2 header{
+			font-size:22px;
+			color:white;
+			text-align: center;
+			line-height:70px;
+			background:#063146;
+			user-select: none;
+		}
+.sidebar2 ul a{
+			display:block;
+			height:100%;
+			width:100%;
+			line-height: 65px;
+			font-size: 20px;
+			color:white;
+			padding-left: 40px;
+			box-sizing:border-box;
+			border-top:1px solid rgba(255,255,255,.1);
+			border-bottom: 1px solid black;
+		}
+ul li:hover a{
+			padding-left: 16px;
+		}
+.sidebar2 ul a i{
+			margin-right: 16px;
+}
+
+
+.req{
+	float:center;
+}
+
+h1{
+	text-align: center;
+}
+
+h3{
+	text-align: center;
+}
+
+	
+	</style>
+</head>
+
+<body>
+		<div class="logo">
+            <img src="cbitnamelogo.png" width="800" height="200"  alt="name logo unavailable">
+	    </div>
+
+	<div>
+			<ul class="links">
+				<li><a href="http://cbit.ac.in" class="cool-links">Dashboard</a></li>
+				<li><a href="user_login/Events" class="cool-links">Events</a></li>
+				<li><a href="#" class="cool-links">About</a></li>
+				<li><a href="#" class="cool-links">Help</a></li>
+			</ul>
+   </div>
+   <h1 style="color:white"><b>ADMIN PAGE</b></h1>
+<div class="req" >
+<h1 style="color:white"> Requests</h1>
+<table align="center"  style="background-color:white">
+  <tr>
+    <th >Event Head</th>
+	<th>Title</th>
+	<th>DESCRIPTION</th>
+	<th>STATUS</th>
+  </tr>
+  {%if request_list %}
+{%for request in request_list%}
+  <tr>
+    <td><h3><i>{{request.event_head_name}}</i></h3></td>
+	<td>{{request.title}}</td>
+	<td>{{request.event_desc}}</td>
+	<td><h3> <a href="accept/{{request.req_id}}">
+		<button>Accept</button>
+	</a></h3>
+	<h3><a href="reject/{{request.req_id}}">
+		<button>Reject</button>
+	</a></h3></td>
+  </tr>
+  {%endfor%}
+  {%endif%}
+  
+</table>   
+</div>
+
+</body>
+</html>

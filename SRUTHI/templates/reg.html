@@ -1,0 +1,70 @@
+<HTML>
+    <HEAD>
+        <title></title>
+    <style>
+        body{
+            background-image:url(img2.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+    
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    h1{
+        text-align: center;
+        padding: 20px;
+    }
+    .register{
+         background: afff;
+         width: 500px;
+         margin: 0px 0px 0px 430px;
+         color:violet;
+         font-size: 18;
+         padding: 20px;
+         border-radius:10px;
+    }
+    #register{
+        margin-left: 50px;
+    
+    }
+    label{
+        color:blue;
+        font-family:merlin;
+        font-size: 18px;
+    }
+    #name{
+        width:300px;
+        border:black;
+        border-radius:3px;
+        outline:0;
+        padding:7px;
+    }
+    
+    </style>
+    </HEAD>
+       <BODY>
+           <h1>Registration Form</h1>
+           <div class="register">
+               <h2>EVENTS REGISTRATION </h2>
+               <form method="post" action="reg">
+                {% csrf_token %}
+                {{ form }}
+              
+               <select id="events" name="events">
+                {%if events%}
+                {%for event in events%}
+                 <label>Events</label><br>
+                   <option  value="{{event.event_id}}">{{event.event_id}}: {{event.event_title}}</option>
+                   {%endfor%}
+                   {%endif%}
+               </select>
+              
+            <input type="submit"></input>
+        </form>
+        </div>
+    
+       </BODY>
+    </HTML>
+    
