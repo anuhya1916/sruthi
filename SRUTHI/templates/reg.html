@@ -1,70 +1,82 @@
-<HTML>
-    <HEAD>
-        <title></title>
-    <style>
-        body{
-            background-image:url(img2.jpg);
-            background-size: cover;
-            background-position: center;
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40pxa
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
+</head>
+<body>
+<h2>EVENT REGISTRATION</h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<form  style="text-align:center" method="post" action="reg">
+    {% csrf_token %}
+    {{ form }}
+<ul id="myUL">
+    {%if events%}
+    {%for event in events%}
+  <li style="text-align:left" value="{{event.event_id}}"><a href="">{{event.event_title}}</a>
+  <p style="text-align:right"><button value="{{event.event_id}}" name="events" id="events">Register</button></p>
+  </li>
+ {%endfor%}
+ {%endif%}
+</ul>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
         }
-    
-    *{
-        margin: 0;
-        padding: 0;
     }
-    h1{
-        text-align: center;
-        padding: 20px;
-    }
-    .register{
-         background: afff;
-         width: 500px;
-         margin: 0px 0px 0px 430px;
-         color:violet;
-         font-size: 18;
-         padding: 20px;
-         border-radius:10px;
-    }
-    #register{
-        margin-left: 50px;
-    
-    }
-    label{
-        color:blue;
-        font-family:merlin;
-        font-size: 18px;
-    }
-    #name{
-        width:300px;
-        border:black;
-        border-radius:3px;
-        outline:0;
-        padding:7px;
-    }
-    
-    </style>
-    </HEAD>
-       <BODY>
-           <h1>Registration Form</h1>
-           <div class="register">
-               <h2>EVENTS REGISTRATION </h2>
-               <form method="post" action="reg">
-                {% csrf_token %}
-                {{ form }}
-              
-               <select id="events" name="events">
-                {%if events%}
-                {%for event in events%}
-                 <label>Events</label><br>
-                   <option  value="{{event.event_id}}">{{event.event_id}}: {{event.event_title}}</option>
-                   {%endfor%}
-                   {%endif%}
-               </select>
-              
-            <input type="submit"></input>
-        </form>
-        </div>
-    
-       </BODY>
-    </HTML>
+}
+</script>
+
+</body>
+</html>
+
     

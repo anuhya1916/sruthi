@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import User
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -7,9 +6,6 @@ from django.shortcuts import render, redirect
 import requests
 import json
 from django.http import HttpResponse
-
-
-
 p=''
 # Create your views here.
 def user_login(request):
@@ -66,6 +62,7 @@ def profile(request,Rollno):
         messages="error"
         context={'messages':messages}
         return render(request,'user_login.html',context)
+    
 def EventsReg(request,Rollno):
     det={'Rollno':Rollno}
     token = requests.post("http://shruthiapi.herokuapp.com/roll_access",det)
@@ -102,7 +99,15 @@ def reg(request,user_id):
         return HttpResponse("You have already registered  for this event")
     else:
         return HttpResponse("There was an error while registration")
+def fav(request,user_id):
+    token1=requests.get("https://shruthiapi.herokuapp.com/events")
+    token1=token1.json()
+    det={'user_id':user_id}
+    token = requests.post("http://shruthiapi.herokuapp.com/userid_access",det)
+    context={'events_list':token1,}
+    return render(request,'fav.html',context)
 
+    
     
 
 

@@ -17,5 +17,5 @@ urlpatterns = [
   
     path('user_login/eventreg/<int:user_id>/reg',views.reg,name='reg'),
     
-    
+    path('user_login/fav/<int:user_id>/',views.fav,name="fav"),
     ]

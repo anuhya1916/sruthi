@@ -2,6 +2,10 @@
 <html lang="en" dir="ltr">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<title>userpage</title>
 	<style>
 		body{
@@ -68,6 +72,26 @@
 
 </head>
 <body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		  <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>                        
+			</button>
+			<a class="navbar-brand" href="#">SRUTHI 2020</a>
+		  </div>
+		  <div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+			  <li><a href="http://127.0.0.1:8000/">HOME</a></li>
+			  <li  class="active"><a href="http://127.0.0.1:8000/user/user_login/">USER LOGIN</a></li>
+			  <li><a href="http://127.0.0.1:8000/user/user_registration/">USER REGISTARTION</a></li>
+			  <li><a href="http://127.0.0.1:8000/Myadmin/">ADMIN</a></li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
     {%if user_list%}
     {%for user in user_list%}
 	<div class="sidebar">
@@ -94,8 +118,7 @@
 	<h3>Welcome {{user.name}}</h3><br><br>
 	<h2><i> <mark>Thank you for registering to the Sruthi 2020</mark></i></h2><br>
 	<p><i>Congratulations, you have been successfully registered t0 SRUTHI 2020</i></p><br>
-    {%endfor%}
-    {%endif%}
+	{%endfor%}	
+	{%endif%}
 </body>
 </html>
-  
